@@ -11,11 +11,13 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(bodyParser.json());
 
-
+// get safaricom access token
 app.get('/access_token',access,(req,res)=>{
     res.status(200).json({access_token:req.access_token})    
 })
 
+
+// register your own callback url
 app.get('/register',access,(req,res)=>{
     url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
     auth ="Bearer " + req.access_token
@@ -45,18 +47,21 @@ app.get('/register',access,(req,res)=>{
 
 })
 
+// confirmation callback
 app.post('/confirmation',(req,res)=>{
     // mpesa_response = req.body
     console.log("......confirmation......")
     console.log(req.body)
    
 })
+// validation callback
 app.post('/validation',(req,res)=>{
     mpesa_response = req.body
     console.log("......validation......")
     console.log(req.body)
 })
 
+// simulate transaction
 app.get('/simulate',access,(req,res)=>{
     url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate"
     auth ="Bearer " + req.access_token
@@ -202,32 +207,8 @@ app.get('/mpesab2b',access,(req,res)=>{
   
 })
 
-app.get('/mpesa/timeout',(req,res)=>{
-    let message = app.get('data')
-   
-    res.send (["------this is a callback----- \n",JSON.stringify(message,null, 4)])
-})
-app.get('/mpesa/result',(req,res)=>{
-    let message = app.get('resultdata')
-   
-    res.send (["------this is a callback----- \n",JSON.stringify(message,null, 4)])
-})
-app.post('/mpesa/timeout',(req,res)=>{
-if(req.body.Result.ResultCode === "0"){
-    app.set('data', req.body)
-}
-    
-    console.log("--------timedout--------")
-    console.log(req.body)
 
-    let message = {
-        "ResponseCode": "00000000",
-        "ResponseDesc": "success"
-      };
-    
-    // respond to safaricom servers with a success message
-    res.json(message);
-})
+// timeout url
 app.post('/timeout',(req, res) =>{
     // app.set('data', req.body);
     console.log("--------timedout--------")
@@ -243,6 +224,7 @@ app.post('/timeout',(req, res) =>{
 
 })
 
+// result url
 app.post('/result',(req, res) =>{
     console.log("--------Result--------")
     console.log(req.body)
