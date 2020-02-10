@@ -11,17 +11,6 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(bodyParser.json());
 
-app.get('/api/ninjas', (req, res)=>{
-    res.send('whataap bisheeees!! bwa! bwa! bwa!')
-})
-
-app.get('/', (req, res)=>{
-    res.sendfile(__dirname +'/index.html')
-})
-
-app.get('/api/ninjas/:id',(req, res)=>{
-    res.send('hurraah you requested to see ninja '+ req.params.id )
-})
 
 app.get('/access_token',access,(req,res)=>{
     res.status(200).json({access_token:req.access_token})    
@@ -40,8 +29,8 @@ app.get('/register',access,(req,res)=>{
            json : {
             "ShortCode": "603093",
             "ResponseType": "Complete",
-            "ConfirmationURL": "http://07b577b9.ngrok.io/confirmation",
-            "ValidationURL": "http://07b577b9.ngrok.io/validation"
+            "ConfirmationURL": "http://996de779.ngrok.io/confirmation",
+            "ValidationURL": "http://996de779.ngrok.io/validation"
           }
           
        },
@@ -116,11 +105,11 @@ app.get('/mpesastk',access,(req,res)=>{
             "Password": password,
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
-            "Amount": "10",
+            "Amount": "132",
             "PartyA": "254702930617",
             "PartyB": "174379",
             "PhoneNumber": "254702930617",
-            "CallBackURL": "http://07b577b9.ngrok.io/hooks/mpesa",
+            "CallBackURL": "http://996de779.ngrok.io/hooks/mpesa",
             "AccountReference": "test ",
             "TransactionDesc": "test"
         }
@@ -158,8 +147,8 @@ app.get('/mpesab2c',access,(req,res)=>{
             "PartyA": "603093",
             "PartyB": "254708374149",
             "Remarks": "Testing string",
-            "QueueTimeOutURL":"http://07b577b9.ngrok.io/timeout" ,
-            "ResultURL": "http://07b577b9.ngrok.io/result",
+            "QueueTimeOutURL":"http://996de779.ngrok.io/timeout" ,
+            "ResultURL": "http://996de779.ngrok.io/result",
             "Occasion": "testing"
           }
       },
@@ -197,8 +186,8 @@ app.get('/mpesab2b',access,(req,res)=>{
             "PartyB": "600000",
             "AccountReference": " ",
             "Remarks": "Testing string",
-            "QueueTimeOutURL":"http://07b577b9.ngrok.io/timeout" ,
-            "ResultURL": "http://07b577b9.ngrok.io/result",
+            "QueueTimeOutURL":"http://996de779.ngrok.io/timeout" ,
+            "ResultURL": "http://996de779.ngrok.io/result",
         
           }
       },
@@ -279,7 +268,6 @@ app.post('/hooks/mpesa', (req, res) => {
         "ResponseCode": "00000000",
         "ResponseDesc": "success"
       };
-      
     // respond to safaricom servers with a success message
     res.json(message);
   });
