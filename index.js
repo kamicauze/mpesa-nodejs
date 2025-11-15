@@ -111,9 +111,9 @@ app.get('/mpesastk',access,(req,res)=>{
             "Timestamp": timestamp,
             "TransactionType": "CustomerPayBillOnline",
             "Amount": "132",
-            "PartyA": "254702930617",
+            "PartyA": "254702930618",
             "PartyB": "174379",
-            "PhoneNumber": "254702930617",
+            "PhoneNumber": "254702930618",
             "CallBackURL": "http://996de779.ngrok.io/hooks/mpesa",
             "AccountReference": "test ",
             "TransactionDesc": "test"
